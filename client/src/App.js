@@ -1,11 +1,11 @@
 import './App.css';
-import Polaroid from './components/Poloroid';
+import Poloroid from './components/poloroid';
 import Home from './Page/Home';
 
 function App() {
   return (
     <div className="App">
-      <Polaroid />
+      <Poloroid />
       <Home />
     </div>
   );

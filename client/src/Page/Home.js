@@ -6,6 +6,7 @@ const Home = () => {
   const [selectedFile, setSelectedFile] = useState(null);
   const [loading, setLoading] = useState(false);
   const [showCamera, setShowCamera] = useState(false);
+  const [showOptions, setShowOptions] = useState(false);
   const videoRef = useRef(null);
   const streamRef = useRef(null);
 
@@ -73,6 +74,20 @@ const Home = () => {
     }
   };
 
+  const handleTakePhoto = () => {
+    setShowOptions(true);
+  };
+
+  const handleCameraOption = () => {
+    setShowOptions(false);
+    startCamera();
+  };
+
+  const handleGalleryOption = () => {
+    setShowOptions(false);
+    document.getElementById('fileInput').click();
+  };
+
   useEffect(() => {
     return () => {
       stopCamera();
@@ -101,11 +116,11 @@ const Home = () => {
       ) : (
         <div className="upload-section">
           <button 
-            onClick={startCamera} 
-            className="upload-button camera-button"
+            onClick={handleTakePhoto} 
+            className="upload-button"
             disabled={loading}
           >
-            {loading ? 'Uploading...' : 'Open Camera'}
+            {loading ? 'Uploading...' : 'Take Photo'}
           </button>
 
           <input
@@ -115,12 +130,22 @@ const Home = () => {
             onChange={handleFileInput}
             style={{ display: 'none' }}
           />
-          <label 
-            htmlFor="fileInput" 
-            className="upload-button file-button"
-          >
-            {loading ? 'Uploading...' : 'Choose from Gallery'}
-          </label>
+
+          {showOptions && (
+            <div className="options-modal">
+              <div className="options-content">
+                <button onClick={handleCameraOption} className="option-button">
+                  Use Camera
+                </button>
+                <button onClick={handleGalleryOption} className="option-button">
+                  Choose from Gallery
+                </button>
+                <button onClick={() => setShowOptions(false)} className="option-button cancel">
+                  Cancel
+                </button>
+              </div>
+            </div>
+          )}
         </div>
       )}
     </div>

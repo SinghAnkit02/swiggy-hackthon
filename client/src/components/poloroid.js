@@ -1,8 +1,25 @@
 import React from 'react'
+import '../App.css'
 
-const DummyImage = () => {
+const Poloriad = () => {
+  const openCamera = () => {
+    // Check if the device supports getUserMedia
+    if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+      navigator.mediaDevices.getUserMedia({ video: true })
+        .then(function(stream) {
+          // Handle the camera stream
+          console.log('Camera opened successfully');
+        })
+        .catch(function(error) {
+          console.error("Camera error: ", error);
+        });
+    } else {
+      alert('Camera not supported on this device');
+    }
+  };
+
   return (
-    <div className="main-container">
+    <div className="mobile-container">
       <div className="polaroid-container">
         <div className="polaroid">
           <img 
@@ -10,11 +27,11 @@ const DummyImage = () => {
             alt="Random"
             className="polaroid-image" 
           />
-          
         </div>
       </div>
+      
     </div>
   )
 }
 
-export default DummyImage
+export default Poloriad
