@@ -1,0 +1,9 @@
+{
+  "$metadata": {
+    "httpStatusCode": 200,
+    "requestId": "9016ee51-5b01-4773-9c8f-7ea4f43efbb0",
+    "attempts": 1,
+    "totalRetryDelay": 0
+  },
+  "invocationArn": "arn:aws:bedrock:us-east-1:228491198546:async-invoke/dbulxelmz12j"
+}
