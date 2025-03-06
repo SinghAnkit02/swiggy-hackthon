@@ -1,5 +1,37 @@
-.App {
-  text-align: center;
+:root {
+  /* Colors */
+  --polaroid-bg: white;
+  --text-color: #333;
+  --hashtag-color: #222;
+  --main-bg: #f5f5f5;
+  
+  /* Sizes */
+  --polaroid-max-width: 250px;
+  --polaroid-padding: 25px;
+  --polaroid-bottom-padding: 80px;
+  --caption-font-size: 1.2em;
+  --hashtag-font-size: 1.6em;
+  
+  /* Effects */
+  --rotation-angle: -2deg;
+  --caption-rotation: -15deg;
+  --hover-scale: 1.02;
+  --shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  
+  /* Mobile sizes */
+  --mobile-max-width: 380px;
+  --mobile-padding: 20px;
+  --mobile-bottom-padding: 70px;
+  --mobile-caption-size: 1.1em;
+  --mobile-hashtag-size: 1.4em;
+}
+
+.main-container {
+  min-height: 100vh;
+  background-color: var(--main-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .App-logo {
@@ -34,5 +66,80 @@
   }
   to {
     transform: rotate(360deg);
+  }
+}
+
+.polaroid-container {
+  padding: var(--polaroid-padding);
+  width: 100%;
+  max-width: var(--polaroid-max-width);
+}
+
+.polaroid {
+  background: var(--polaroid-bg);
+  padding: var(--polaroid-padding);
+  padding-bottom: var(--polaroid-bottom-padding);
+  box-shadow: var(--shadow);
+  position: relative;
+  width: 100%;
+  margin: auto;
+  border-radius: 2px;
+  transform: rotate(var(--rotation-angle));
+  transition: transform 0.3s ease;
+}
+
+.polaroid:hover {
+  transform: rotate(0deg) scale(var(--hover-scale));
+}
+
+.polaroid-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 1px;
+}
+
+.polaroid-caption {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  transform: rotate(var(--caption-rotation));
+  font-family: 'Courier New', Courier, monospace;
+  display: flex;
+  gap: 4px;
+  color: var(--text-color);
+  padding: 5px;
+  background: rgba(255, 255, 255, 0.8);
+  justify-content: flex-end;
+  width: 90%;
+}
+
+.hashtag {
+  font-weight: bold;
+  font-size: var(--hashtag-font-size);
+  color: var(--hashtag-color);
+}
+
+.caption-text {
+  font-size: var(--caption-font-size);
+}
+
+@media (max-width: 480px) {
+  :root {
+    --polaroid-max-width: var(--mobile-max-width);
+    --polaroid-padding: var(--mobile-padding);
+    --polaroid-bottom-padding: var(--mobile-bottom-padding);
+    --caption-font-size: var(--mobile-caption-size);
+    --hashtag-font-size: var(--mobile-hashtag-size);
+  }
+
+  .polaroid-container {
+    padding: 15px;
+  }
+
+  .polaroid-caption {
+    bottom: 15px;
+    right: 15px;
+    width: 85%;
   }
 }
